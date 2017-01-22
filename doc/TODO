@@ -1,0 +1,66 @@
+NS	Devise a new algorithm to generate Guest nick suffixes so that there is
+	    absolutely no chance of two Guests getting the same numeric suffix.
+**	Periodic pings to uplink server
+	    [<fabulous@brasnet.org>]
+MS	Command to delete last sent memo if recipient hasn't logged on since
+	    [Stefan Funke <bundy@bundynet.de>]
+**	Specific exit values for certain things (e.g. failed connection)
+OS	Change clone kill functionality; only kill new clones, not all
+	    [last 2: <uziel@ingsoc.com>]
+    (Obsolete? Superceded by session limiting? -TheShadow)
+**	-noexpire to disable expiration (and maybe OperServ option?)
+	    [Martin Butler <ibm@qualitynet.org>]
+OS	Command to reset max user count
+OS	Option to show nick in JUPE message
+	    [<dnar@concentric.net>]
+**	Rewrite sgets() not to hang if part of a line received
+NS	Numbered access list
+CS	Merge appropriate channel flags with LEVELS settings
+MS	Function to E-mail memos to an address
+NS/CS	SENDPASS to send nick/channel passwords via E-mail
+**	Services admin list should be available to normal users
+CS	ChanServ AKICK: record setter, like AKILL
+	    [<andor@terrax.net>]
+
+--------
+
+Things to think about:
+
+NS	Option to set delay time for FORBIDden nicks
+	    [Erdem Sener <mikado@holyfire.com>]
+**	/msg * HELP INDEX to list all topics
+	    [<pteryx@ime.net>]
+NS	Option to require E-mail address with registration
+	    [<kieran_spain@eol.ieaust.org.au>]
+CS	Option to not show old setter when restoring topic
+	    [Pete Ford <pford@ccinu.net>]
+OS	STATS option to list user counts by server
+	    [Evren Yurtesen <yurtesen@ispro.net.tr>]
+NS	Services oper/admin status line in INFO
+CS	SET REVENGE (reverses ban, etc. set by lower level user on higher,
+		and optionally deops/kicks/bans lower level user)
+	    [last 2: <andor@terrax.net>]
+NS	SUSPEND
+	    [Andrew Kempe]
+NS	LINK LIST, UNLINK <nick>
+MS	Notification for channel memos (on send, on logon?)
+CS	Last used time for AKICK
+	    [last 2: <fabulous@brasnet.org>]
+OS	Last used time for AKILL
+NS	SET INFO to set an info line for INFO command (like channel descs)
+NS	Show services oper/admin/root status in INFO
+**	Module support
+	    [last 3: <dnar@terrax.net>]
+CS	Notice about NickServ IDENTIFY required for secure privs
+NS	SET ALL (especially PASSWORD) for all linked nicks
+	    [Travis Saucier <enygma@cyberback.com>]
+MS	Require only recognition (not IDENTIFY) for INFO
+MS	MemoServ IGNORE {ADD,DEL,LIST}
+NS	Link URL/E-mail as well
+**	Add SYS_LANGUAGE and language-ify strings for wallops/kills/etc.
+NS	Include link information in INFO
+OS	Prevent autokills matching everyone (*@*, etc.)
+OS	Should CLEARMODES obey regged channels' mode locks?
+CS	Allow hiding of INFO information a la NickServ
+**	Add a way to send OperServ (and other?) commands from the shell
+**	Services log channel

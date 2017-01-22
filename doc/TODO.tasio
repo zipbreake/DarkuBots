@@ -1,0 +1,8 @@
+ToDo
+
+ircservices-4.3.3+Upworld-1.1+BDD         equis@fuckmicrosoft.com
+--------------------------------------------------------------------
+-Los comandos de ChanServ OP y DEOP deben permitir usarlos para más de un nick al mismo tiempo.
+-Normalizar carácteres de tablas V y W para evitar que la red caiga por un carácter ilegal. Esto realmente es problema del IRCD...
+-'CallBack' para ChanServ ACCESS LIST y AKICK LIST.
+-Detectar el tipo de procesador en el ./configure para una optimización automática

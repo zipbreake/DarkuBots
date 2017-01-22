@@ -1,0 +1,19 @@
+Claves de alta calidad para nicks y cifrados de IPs (semilla)
+-------------------------------------------------------------
+
+Claves de 12 carácteres para nicks, y 40 para IPs
+Generadas _aleatoriamente_, carácter por carácter,
+a partir de una lista de 64 carácteres
+
+Nº de combinaciones posibles:
+Nicks: 64^12 = 4722366482869645213696
+IPs:   64^40 = 1766847064778384329583297500742918515827483896875618958121606201292619776
+
+Idea original y Parte del código extraído del
+mkpasswd.c original del IRCd de IRC-Hispano.
+
+Rango de carácteres: A-Z, a-z, 0-9, [, ].(64)
+
+--------------------------------------------------
+David Martín Díaz <equis@fuckmicrosoft.com>, [x].-
+--------------------------------------------------

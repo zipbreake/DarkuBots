@@ -1,0 +1,135 @@
+ChangeLog 
+
+ircservices-4.3.3+Upworld-1.1+BDD-1.2.1		  tasio@tasio.net
+--------------------------------------------------------------------
+-Fix en el correo.c
+-Fix en la función is_a_service que mataba a los servicios si se utilizaba
+esta función con los bots "optativos" deshabilitados*
+-Optimizaciones en tiempo de compilación para un mayor rendimiento y
+velocidad.
+
+(*) Estos fixes han sido notificados por DesMan <desman@esirc.com>
+
+
+ircservices-4.3.3+Upworld-1.1+BDD-1.2rc5p1 equis@fuckmicrosoft.com
+--------------------------------------------------------------------
+-Pequeño parche de la versión 5 para "ajustar" modos de los services
+-Solucionado bug en nickserv que enviaba el debug de USERIP al canal de admins
+sin estar dentro. Ahora lo envía al de opers.
+
+
+ircservices-4.3.3+Upworld-1.1+BDD-1.2rc5   equis@fuckmicrosoft.com
+--------------------------------------------------------------------
+-Bug en ShadowServ (desde rc4), no +d
+-No se puede hacer DELACCESS de canales SUSPENDidos
+-Permitir ACCESS/LEVELS/AKICK LIST en canales SUSPENDidos
+-No permitir cambio/deshabilitado de E-Mail a menos que sea Oper
+-Fixes en el NickServ INFO:	-Alta en la BDD como opción
+				-Host del nick sólo lo ven Admins, los
+				opers necesitan USERIP.
+				-Mostrado del E-Mail a Opers, no al propio
+				user (ni a otros).
+				-Nick propio en la primera línea.
+-Insensibilizar a los services ante canales sin modos (+canal)
+-Sucesor en ChanServ INFO para todos los usuarios.
+-Ordenes IRCOPS y VERIFY de ChanServ limitadas a Opers
+-No permitir v-hosts de más de 64 carácteres en tabla v y de 56 en tabla w.
+
+
+
+ircservices-4.3.3+Upworld-1.1+BDD-1.2rc4   equis@fuckmicrosoft.com
+--------------------------------------------------------------------
+-Corrección de las funciones strupper y strlower para GCC > 2.95. Esto tenia consecuencias bastante poco agradables si no se usaba esa version de compilador.
+-Fase de limpieza de código y simplificación de funciones, en camino hacia una fase Beta
+-USERIP ahora resuelve la ip (a buenas horas).
+-Errores solucionados en la interpretación del modo +/-M de canales
+-"Solucionado" el bug del correo vía SMTP (se limita a enviar información, no a interpretar la del servidor, cosa que sería muy útil si este está "de baja" o nos pide identificación)
+
+
+ircservices-4.3.3+Upworld-1.1+BDD-1.2rc3   equis@fuckmicrosoft.com
+--------------------------------------------------------------------
+-Nicks SUSPENDidos no pueden entrar en _ningun_ canal
+-Bug en DELACCESS que permitía qutarse un registro positivo si el nivel del usuario estaba bajo influencia del NOJOIN (p.ej, NOJOIN a 300, level del user 200)
+-Feature de ChanServ para depurar los registros en canales al propio usuario al momento.
+-Auto-idenficación con flag +S
+-ChanServ no entra ya en ningún canal (no siendo los de debug). Los "stay" en canales FORBIDeados pasan a ser de ShadowServ.
+-Ajustes en el AKICK
+
+
+
+ircservices-4.3.3+Upworld-1.1+BDD-1.2rc2   equis@fuckmicrosoft.com
+--------------------------------------------------------------------
+-Añadida nueva orden de NickServ: USERIP <nick>. Devuelve la IP de <nick>.
+-EntryMsg por defecto para canales recién registrados
+-Más debug.
+-Services reconocidos como tales al intentar hacerles algo.
+-Limpieza de 'warnings' en bdd.c
+-Limpieza de multitud de bugs considerados IMPORTANTES
+-Limpieza del es.l
+
+
+
+ircservices-4.3.3+Upworld-1.1+BDD-1.2rc1   equis@fuckmicrosoft.com
+--------------------------------------------------------------------
+-Primera 'release candidate', con vistas a uso productivo.
+-Añadido soporte de Chanserv para el nuevo modo implementado por Hispano, +M.
+-Eliminación del soporte para el IRCU de Terra. Considerado obsoleto y dedicación plena al IRCd de la red iRC-Hispano.
+-Solucionado un bug de gran importancia, que permitía regenerar una clave conociendo el momento exacto de su generación. Esto es temporal.
+-Eliminado el 'stay' de ChanServ.
+-Comienzo de la fase de eliminación de otros idiomas, japonés, francés, inglés, etc...
+-Eliminado pequeño error en el script configure.
+-Nueva orden de BddServ: ACTUALIZAR, nos permite "resincronizar" los contadores de la BDD, si hemos hecho un raw. Estudio la posibilidad de hacerlo conjuntamente a este comando.
+-Soporte para tabla I. Estudio la posibilidad de manejar los clones con otro bot.
+-Terminado (al menos para tablas indispensables) el comando BDD.
+-Solucionado un bug en el AKICK que mataba el proceso por causas desconocidas.
+-Documentación total del servicio BDD
+-Eliminada la parte de "Contraseña aceptada, bienvenid@ a casa ;)" de NickServ para nicks +r
+-Fixups y cleans variados
+
+-** ATENCIÓN: El sistema de generación de claves utiliza una parte específica de generación
+de "randoms" incluida en micros 486 y superiores. Arquitectura x86 soportada sólamente. Si
+alguien me puede documentar al respecto acerca de las instrucciones correspondientes a micros
+Alpha, PPC, etc; le estaría muy agradecido.
+
+
+
+ircservices-4.3.3+Upworld-1.1+BDD-1.1     equis@fuckmicrosoft.com
+--------------------------------------------------------------------
+-Subo el código fuente a SourceForge.net
+-Nueva orden de ChanServ: DELACCESS, nos elimina un registro.
+-Numerosos cambios en el configure, el es.l y el archivo de ejemplo.
+
+
+
+ircservices-4.3.3+Upworld-1.1+BDD-1.0b     equis@fuckmicrosoft.com
+--------------------------------------------------------------------
+-Añadido "ShadowServ" como parte de los services, sin necesidad de módulo ajeno.
+-OP para todos los operadores en canales incluso sin registrar.
+-Anti-deop de operadores por ChanServ.
+-ni->status relativo al +r:
+				-Información extra en el nick info
+				-Eliminación del mensaje de identificación.
+-Modos de canales "oficiales" automáticos desde el principio. (bug)
+-Modificación de la tolerancia de modos de ChanServ (MLOCK) para soportar el +R
+-Eliminación de los mensajes globales de sincronización de la red.
+-Eliminación del origen en mensajes globales.
+-Nueva orden de NickServ disponible para operadores: RENAME <nick>
+-Nueva orden de OperServ disponible para operadores: KILL <nick> [motivo]
+-Información sobre el nivel del usuario (Oper/Admin/Root) en el NickServ info.
+-User y vhost de cada bot configurable por separado.
+-Control de la Base de Datos Distribuida del IRCd de iRC-Hispano:
+	-Control de tablas: n, v, o y w
+	-Nicks registrados se migran automáticamente.
+	-Alta de opers/admins en tablas v y o con un solo comando.
+	-Orden de NickServ: SET VHOST <cadena> para introducir una entrada en la tabla w
+	-Orden de OperServ: VHOST <nick> [cadena] para entradas en tabla v
+	-Orden de NickServ: SET BDD {ON|OFF} para introducir/sacar un nick de la BDD sin perderlo.
+-Nuevo servicio: BddServ:
+	-Sistema para cambiar la clave de cifrado de las ip's
+	-Orden para compactar las tablas
+	-Orden para escribir en ellas en modo "raw"
+-Me añado en los créditos del programa, y paso a liberarlo nuevamente con licencia GPL.
+-NickServ genera claves de "alta calidad" (64^12 posibles claves) en el register
+-Nueva orden de NickServ: GETNEWPASS, para obtener una clave de "alta calidad"
+-Eliminado el bug en ChanServ: ACCESS #canal LIST <nick>. <nick> era case-sensitive
+-Al poner un AKICK, si el nick está en el canal, es inmediatamente expulsado.

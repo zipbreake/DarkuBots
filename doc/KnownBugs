@@ -1,0 +1,17 @@
+Forced nickchanges may cause nick collisions between "Guest" nicks when there
+is a large netburst that is processed extremely quickly by Services. This
+should be fixed in the not-so-distant future.
+
+Clone detection can give false warnings if a user connects and then signs
+off several times in rapid succession.
+
+Clone detection also goes off wrongly if a server links and has a number of
+clients from the same hostname.
+
+/msg OperServ RESTART / kill -HUP don't work sometimes.  SHUTDOWN /
+kill -TERM (or just kill) still work in this case.  [Happens after
+netsplits?]
+
+If there is absolutely no activity on your network, Services may delay
+timed events (nick kills, database saving, etc.) until the next message
+comes in from Services' uplink server.

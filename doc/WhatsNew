@@ -1,0 +1,261 @@
+                                What's New
+               =============================================
+               Summaries of changes in new Services versions
+
+Note: This is intended to highlight only the major changes between
+      versions.  For a complete list of changes, see the "Changes" file.
+
+------------
+Version 4.3:
+------------
+  + Due to a lack of time, Andy Church has handed over the maintenance and
+    development of Services to myself, Andrew Kempe. To quote him, "I have
+    (I hope) created something people find useful; I don't want to let it
+    rot for my own lack of time to continue work on it." Although he's left
+    large shoes to fill, I hope to continue his work in the same light. I'd
+    also like to stress that even though I'm the new, quoted, "maintainer"
+    (*cringe*) of services, I'm always open to constructive critisim,
+    suggestions and the like. I hope Andy will remain associated with Services
+    and it's development, even if only in a minor role/way. Andy, thanks for
+    a great codebase upon which to develop! Finally, there will be a couple 
+    of changes taking place, such as a new distribution site and a new mailing
+    list address. These changes are detailed below.
+  + New Services mailing list address: ircservices@ender.shadowfire.org
+    Everyone who was on the old mailing list, as of 1999/08/12, has been moved
+    to the new list. See section 9 of the README for information about using 
+    this list.
+  + New Services website:
+  	http://ender.shadowfire.org/ircservices/
+  + New Services distribution sites: 
+  	Official: 	ftp://ender.shadowfire.org/pub/ircservices/
+	Mirror:		ftp://ftp.electrocity.com/pub/ircservices/
+    I will try to get all the previous versions of Services online there soon.
+  + Services can now limit the number of client connections per hostname. This
+    is intended to supercede the CheckClones code. It is also possible to 
+    specify limits for specific hosts or hostmasks. Users causing the limit
+    to be exceeded are killed.
+  + Extended the INFO and AKICK commands.
+    display hidden/additional information.
+  + Services now supports DALnet's +r usermode and +r/+R channel modes.
+  + See Changes.lang for a list of the new/modified language strings.
+
+New configuration options:
+  + NSSecureAdmins : When enabled, prevents the use of the DROP, GETPASS, and 
+  	SET PASSWORD commands by Services admins on other Services admins or 
+	the Services root.
+  + WallExceptionExpire: Send a WALLOPS/GLOBOPS when an exception expires.
+  + LimitSessions  : Enabled session limiting.
+  + DefSessionLimit: Default session limit per hostname.
+  + MaxSessionLimit: Maximum session limit for a session limit exception.
+  + ExceptionExpiry: Default expiry time for a session limit exception.
+  + SessionLimitExceeded: KILL message used when enforcing a session limit.
+  + SessionLimitDetailsLoc: Message NOTICE'd to a user before they're killed to
+  	enforce a session limit.
+
+------------
+Version 4.2:
+------------
+  + Default flags for newly registered nicks can now be configured via
+	services.conf.
+  + The NickServ LINK command can now be disabled via an option in
+	services.conf.
+  + Services admins can list all nicks linked to a given one.
+  + Forbidden and no-expire nicks can be listed by Services admins with the
+	NickServ LIST command.
+  + Services will (optionally) log when a new user maximum is reached.
+  + Services can now be configured to automatically kill users which
+	trigger its clone detection.  This option is HIGHLY DISCOURAGED,
+	however; see data/example.conf for details.
+
+New configuration options:
+  + NSDef...       : Default flags for newly registered nicknames.
+  + NSEnforcerUser : Username/hostname for NickServ kill enforcement
+	(previously "enforcer"@services.hostname).
+  + NSDisableLinkCommand: Disables use of the NickServ LINK command.
+  + NSListOpersOnly: Like ListOpersOnly, but only applies to NickServ.
+  + NSListMax      : Maximum number of nicks displayed for NickServ LIST.
+  + CSListOpersOnly: Like ListOpersOnly, but only applies to ChanServ.
+  + CSListMax      : Maximum number of channels displayed for ChanServ LIST.
+  + CSRestrictDelay: Amount of time to wait after startup before enforcing
+	RESTRICTED/NOJOIN (only partially works).
+  + WallAkillExpire: Send a WALLOPS/GLOBOPS when an autokill expires.
+  + The clone kill option name has been intentionally omitted to force
+	users to read the documentation before using it.
+
+------------
+Version 4.1:
+------------
+  + Most features of Services can now (finally!) be configured via a
+	control file (like ircd's ircd.conf) rather than requiring changes
+	to be made in config.h.  See the README for more information.
+  + Added database importer to allow the use of databases created by other
+	Services-like programs.
+  + Added news system, allowing users to be sent a message when they
+	connect to the network and/or /oper.
+  + Added channel "successor" setting, allowing a "secondary founder" to be
+	designated who will receive control of the channel if the founder's
+	nick expires.
+  + ChanServ will now send more informative error messages when users try
+	to use the DALnet AOP and SOP commands.
+  + Added ChanServ SET OPNOTICE and SET LEAVEOPS settings.
+  + Several more list-type commands can use number lists and ranges
+	(MemoServ LIST/READ, ChanServ ACCESS/AKICK LIST).
+  + Command syntax error messages now obey the user's language setting.
+  + Maximum user count is now dated and saved to disk.
+  + Added vsnprintf() function for systems lacking a real one.
+  * Database error-recovery improved.
+  * Services now compiles warning-free (on all tested systems).
+
+------------
+Version 4.0:
+------------
+This release of Services has two major additions:
+
+  + Multi-language support.  Services can now "speak" in multiple
+	languages; each user can select (on a per-nick basis) which
+	language they would like to receive messages from Services in,
+	including help messages.  Currently supported languages are
+	English, Japanese, Portugese, Spanish, and Turkish; translations
+	into Afrikaans, Dutch, French, and Malaysian are underway.
+  + Nick linking.  Nicknames can now be linked together, allowing a user to
+	keep just one set of nickname settings and memos and have many
+	different "aliases".  Any setting changes made to one of a set of
+	linked nicks will immediately affect all of them; if one of a set
+	of linked nicks is entered in (for example) a channel access list,
+	then the user will have the same access level when using any nick
+	in that set.
+
+In addition, there is now a mailing list for Services discussion and
+announcements.  To subscribe, send mail to services-request@dragonfire.net
+with a subject of "subscribe" and a body of "subscribe <your-address>"
+(without the angle brackets).  More information is at the bottom of the
+README.
+
+Services also has a World Wide Web site, located at:
+	http://achurch.dragonfire.net/services/
+
+Other notable additions/changes include:
+
+  + Services will now track a user's IDENTIFY's across nick changes and
+	network splits (on networks with some sort of timestamp support).
+	An IDENTIFY now lasts until the user disconnects from IRC.
+  + Channels can now receive memos.  By default, any user with access level
+	10 or higher on a channel can list, read, and delete channel memos.
+  + Users' last quit messages are now recorded and displayed in NickServ
+	INFO.
+  + Users can choose to hide parts of their nickname information from other
+	users in the NickServ INFO display.
+  + NickServ's SET KILL command now has QUICK and IMMED options to reduce
+	the time before a kill to 20 seconds or kill immediately,
+	respectively.  (However, the IMMED option is disabled by default in
+	config.h.)
+  + Nickname and channel URLs and E-mail addresses can be unset by passing
+	no parameter.
+  + A message can be set for a channel which will be /notice'd to a user
+	when the user enters the channel.
+  + Users can now set their own memo limits within the range 0 through
+	DEF_MEMO_MAX with the SET LIMIT command.
+  + The MemoServ DEL command now understands ranges (x-y) and commas.
+  + MemoServ now has an INFO command, which reports the total number of
+	memos, number of unread memos, and memo limit for the user giving
+	the command.  Services admins can view that information for any
+	user.
+  + A new OperServ privilege level has been added: Services operator.  The
+	OperServ MODE, KICK, and AKILL commands have been restricted to
+	Services operators and above.
+  + A new OperServ command has been added: CLEARMODES, for Services
+	operators, which will clear all modes, bans, and optionally +o/+v
+	from any channel.
+  + Services admins can now disable expiration of specific nicknames and
+	channels with the NickServ and ChanServ SET NOEXPIRE command, and
+	can set any nick or channel parameters (including passwords)
+	without needing to use the IDENTIFY command.
+  + Services can now be configured to send a WALLOPS/GLOBOPS when the
+	OperServ MODE, CLEARMODES, and/or KICK commands are used.
+  * Services databases have been made portable; they can be moved from one
+	machine / CPU type to another safely.
+  * Services should now be happier about compiling under OS/2 and various
+	different Unices.
+  * Services now gets time zone information from the system rather than
+	requiring it to be defined in config.h or given on the command line.
+
+
+------------
+Version 3.3:
+------------
+Version 3.3 is primarily a maintenance release, getting a lot of bug fixes
+out and significantly optimizing the code.  Other notable changes:
+
+  + MemoServ LIST and READ commands have new forms: LIST NEW and READ LAST.
+  + Nicknames now have a PRIVATE flag, preventing them from appearing in
+	LIST results.
+  + Nicknames' last-seen times are now updated periodically while a nick's
+	owner is online.
+  + Network reads and writes are now buffered.
+  * Channel auto-voice is now enabled by default at an access level of 3.
+  * NickServ STATUS output changed; the word "STATUS" is now included at
+	the beginning of each line.
+
+
+------------
+Version 3.2:
+------------
+
+  + URL and E-mail address fields added to nickname and channel records.
+  + Frequency-of-use limit added to NickServ REGISTER command, much like
+	the frequency-of-use limit on MemoServ SEND command.
+  + Services admins can now be set online (using the OperServ ADMIN
+	command), and no longer need to be defined in config.h.
+  + OperServ RESTART command added to allow Services to be terminated and
+	restarted without needing command-line intervention.
+  * ~ at the beginning of a username (added by many IRC servers when an
+	ident response is not received) is no longer ignored, which
+	eliminates channel autokick problems on such servers.
+  * IRC server message processing code modularized, which should simplify
+	adding support for additional protocols.
+  * More bugs squashed, as usual.
+
+
+------------
+Version 3.1:
+------------
+
+  + A limit can be set on the number of memos a nick can keep, and the
+	limit can be varied or removed on a per-nick basis.
+  + A limit can be set on the maximum number of channels a nick can
+	register.  (This is not yet settable on a per-nick basis.)
+  + The permissible frequency of use of the MemoServ SEND command can be
+	set to prevent (or at least limit) memo flooding; for example, the
+	default configuration prevents users from using the SEND command
+	more often than once every five seconds.
+  + Memo notification can be enabled or disabled on a per-nick basis.
+  + OperServ autokills can be set to expire after a certain period of time,
+	and can default to either not expiring or to having a certain
+	duration.
+  + Slightly increased protocol support: basic support for ircd.dal 4.4.x
+	(x >= 15) is now present, as is support for the ircu GLINE command.
+	Services should also work better with classic irc2.x servers.
+  * Clone detection actually works now.
+  * Many, many bugs fixed, as usual.  Also removed a typo in os-help.c that
+	somehow made it into the 3.0.10 distribution.
+
+
+------------
+Version 3.0: (changes since 2.2.26)
+------------
+
+  + ChanServ access levels can finally be customized!  ChanServ has a new
+	command, LEVELS, which allows the numeric access levels to be
+	fine-tuned for each channel.  There are 11 settings available,
+	each of which corresponds to a particular ChanServ command or
+	function; for example, one can set the level at which users are
+	automatically opped, and one can define a level at which users
+	are to be automatically voiced as well.
+  + Services admins can now view channel access and autokick lists and
+	nickname access lists.
+  + Read-only mode can now be set (and unset) both from the command line
+	and during operation.
+  * Channel access lists may now only contain registered nicknames; this
+	allows Services to run much faster and simplifies channel access
+	checks.
+  * Numerous bugs, memory leaks, and potential security holes squashed.

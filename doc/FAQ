@@ -1,0 +1,522 @@
+           Frequently Asked Questions (FAQ) concerning Services
+           ====================================================
+
+---------------------------------------------------------------------------
+
+Index:
+
+ 1. What is Services?
+
+ 2. Where can I find Services?
+
+ 3. Does Services run under Windows?
+
+ 4. How about OS/2?
+
+ 5. Can I send you questions without reading the FAQ or README files?
+
+ 6. There is no question number 6.
+
+ 7. When I run "make", I get an error message like "missing separator",
+   "Unassociated shell command", "Unexpected end of line seen", etc.
+
+ 7.5. I get an error like "Makefile.inc not found".
+
+ 8. I typed "./services" at the command line, but nothing happened!
+
+ 9. I need support for the XYZ protocol.
+
+10. Whenever I start Services, I get a message on my IRC server saying
+    "connection refused" or something similar, and Services gives an error
+    message from the server saying "Closing Link: ...".
+
+11. My IRC server is giving me messages like "Connection to
+    services.whatever.net[127.0.0.1] activated" and then "Access denied --
+    no N line".  Why?
+
+12. When I say "/connect services.*", it doesn't work!
+
+13. Services complains in the logfile about being unable to load the
+    default language.
+
+14. Services always dies after about five minutes, saying "FATAL ERROR!
+    Can't back up nick.db".
+
+15. Services can't keep up with my network--it eventually falls off with
+    "Max SendQ exceeded".  What can I do about this?
+
+16. Services starts up okay, but if I try to register a nickname, it comes
+    back with "Sorry, registration failed."
+
+17. Services crashed with a segmentation fault.
+
+18. Services' channel mode setting doesn't work.  I can't set modes with
+    OperServ, and every time ChanServ tries to set a mode, my server
+    reverses the change.
+
+19. Using the OperServ JUPE command results in server messages like
+    "Server juped.server introduced by non-hub server services.my.net".
+
+20. I can't use the ADMIN command to add Services admins--it tells me
+    "Permission denied."
+
+21. How can I set up multiple Services roots?
+
+22. When I add an AKILL, the users matching it don't get killed.
+
+23. When I link nicks, the URL and E-mail fields aren't copied.
+
+24. Services reports (via /stats u or /msg OperServ STATS) a different
+    number of users online than I get from doing /lusers.
+
+25. Services ignored the SET SUCCESSOR setting and deleted a channel when
+    the founder expired.
+
+26. Services killed a user it thought was cloning when the user really
+    wasn't.
+
+27. Trying to use OperServ gives me "Access denied", but my nick is in the
+    ServicesRoot directive and is registered, and I've identified for my
+    nick.
+
+97. Services sprechen kein Deutsch!, etc.  (Services doesn't speak my
+    language!)
+
+97.5. I selected a language other than English, but sometimes Services sends
+      responses in English instead.
+
+98. I've found a bug that's not mentioned here or in the README or
+    KnownBugs files.  What should I do?
+
+98.5. Your Services program doesn't do XYZ like DALnet Services.  What's
+      wrong?
+
+99. I've got a great new idea for Services.  Do you want it?
+
+99.5. Examples of features I have been asked about and why I won't add (or
+      haven't yet added) them--so don't ask me about them.
+
+---------------------------------------------------------------------------
+
+1. What is Services?
+
+	Services is a package of services for IRC networks.  See the README
+	file for more information.
+
+
+2. Where can I find Services?
+
+	The latest version can always be found at the official Services
+	distribution site:
+
+	ftp://ender.shadowfire.org/pub/shadowfire/services/
+
+
+3. Does Services run under Windows?
+
+	No.  I don't know enough about Windows programming to accomplish
+	this (nor do I have the slightest desire to).  Unless and until
+	someone contributes patches allowing Services to run under Windows,
+	you'll need a different operating system (try Linux or FreeBSD).
+
+
+4. How about OS/2?
+
+	You may have better luck there; as of version 4.0, Services tries
+	to be compilable on OS/2 through patches and suggestions from
+	others.  I've never tested it, though (I don't use OS/2).
+
+
+5. Can I send you questions without reading the FAQ or README files?
+
+	Sure you can.  It's one of the easiest ways I know to get your
+	messages ignored.
+
+
+6. There is no question number 6.
+
+
+7. When I run "make", I get an error message like "missing separator",
+   "Unassociated shell command", "Unexpected end of line seen", etc.
+
+	Your make program isn't compatible with the Makefile for Services.
+	The Makefile was designed to work with GNU make, and as such may
+	not work on other systems' "make" programs.  If you get an error
+	from "make", obtain GNU make from ftp://prep.ai.mit.edu/pub/gnu/
+	(or wherever you prefer) and use it instead of your system's
+	default "make".  Note that GNU make may already be installed on
+	your system; try using the command "gmake" instead of "make".
+
+	The make programs bundled with SunOS/Solaris and FreeBSD have been
+	reported not to work; you will need to use GNU make on these
+	systems.
+
+7.5. I get an error like "Makefile.inc not found".
+
+	You forgot to run the configure script first.  See the README file
+	for compilation instructions.
+
+
+8. I typed "./services" at the command line, but nothing happened!
+
+	Services puts itself in the background when it starts, so you get
+	your shell prompt right back.  Meanwhile, Services will continue
+	setting up, then connect to the IRC server specified in
+	services.conf (or on the command line).  If it doesn't connect, you
+	probably specified the wrong server type when running the configure
+	script.  (Also make sure that you are actually running one of the
+	supported servers.  There are a gazillion different variations on
+	the basic IRC protocol out there, and I have neither the time nor
+	the desire to add support for them.)
+
+	The recommended server, under which Services has been developed, is
+	DALnet 4.4.x (x < 15); version 4.4.10 of that server is also
+	present at the official Services distribution site.  More recent
+	versions of the DALnet server, through 4.6.7 Dreamforge, have been
+	reported to work with Services.  The Undernet server version 2.9.x
+	has also been reported to work; support has been added in Services
+	4.0 for ircu 2.10.x, but it appears that changes in the Undernet
+	ircd have made Services fail to function with that server--either
+	downgrade to 2.9.32 or switch to the DALnet server.  Support is
+	also present for base irc2.x distributions (with or without the TS8
+	extension), but also has not been extensively tested.  More recent
+	extensions like +CS and TS4 are known _not_ to work.  See the
+	README for more information.
+
+	As always, you can check the log file (services.log by default) for
+	error messages.
+
+
+9. I need support for the XYZ protocol.
+
+	Tough luck, unless you want to write support for it yourself.  See
+	the previous answer.  (Alternatively, I may consider adding or
+	extending support for a protocol if I am given a complete RFC-style
+	description of the protocol, but even then it depends on how common
+	and useful (compared to the protocols already present) I perceive
+	that protocol to be.)
+
+
+10. Whenever I start Services, I get a message on my IRC server saying
+    "connection refused" or something similar, and Services gives an error
+    message from the server saying "Closing Link: ...".
+
+	You need to configure your IRC server to accept Services as an IRC
+	server.  For most IRC servers (those based on the irc2.x
+	distribution), that involves adding two lines like the following to
+	your ircd.conf file:
+
+	C:127.0.0.1:password:services.whatever.net::99
+	N:127.0.0.1:password:services.whatever.net::99
+
+	See the example ircd.conf provided with most distributions for the
+	meaning of each field.
+
+
+11. My IRC server is giving me messages like "Connection to
+    services.whatever.net[127.0.0.1] activated" and then "Access denied --
+    no N line".  Why?
+
+	This is typically caused by including a port number in the C:line
+	for Services, which tells your server to try to autoconnect to it
+	(depending on the class (Y:line) settings).  This is not what you
+	want, because Services will connect to the server itself, but does
+	not listen for servers to connect to it.  The solution is to remove
+	the port number from the C:line.
+
+
+12. When I say "/connect services.*", it doesn't work!
+
+	Of course not.  RTFM (Read The Fine Manual), and see the previous
+	answer.
+
+
+13. Services complains in the logfile about being unable to load the
+    default language.
+
+	You forgot to run "make install".
+
+
+14. Services always dies after about five minutes, saying "FATAL ERROR!
+    Can't back up nick.db".
+
+	Make sure that the user Services runs as has write access to the
+	data directory, and that the data directory actually exists (the
+	latter shouldn't be a problem if you ran the configure script).
+	This means Services needs write and execute permission on the data
+	directory itself and execute permission on every parent directory
+	of the data directory.
+
+
+15. Services can't keep up with my network--it eventually falls off with
+    "Max SendQ exceeded".  What can I do about this?
+
+	If you have a really large network (tens of thousands of
+	simultaneous users), Services in its default configuration will
+	probably be unable to keep up with all the network traffic.  Here
+	are some possible ways to speed Services up:
+
+	  - Run it on a faster computer.  (Services does _not_ need to run
+	    on the same system as an ircd!  If you have several computers
+	    connected via Ethernet or another type of high-speed network,
+	    it's perfectly fine to have an ircd on one machine and Services
+	    on a separate machine.)
+
+	  - Disable clone detection by commenting out CheckClones in
+	    services.conf.
+
+	  - Comment out MSNotifyAll in services.conf.
+
+	  - Reduce the nickname and channel expiration periods.
+
+	  - Reduce the size of your autokill list as much as possible.
+
+	  - Increase ExpireTimeout in services.conf to reduce the frequency
+	    of checking for nickname and channel expiration.
+
+	  - Increase UpdateTimeout in services.conf, but beware that this
+	    will mean more potential data loss if/when Services falls off
+	    your network or crashes.
+
+	  - DON'T run in debug mode!
+
+	Services is known to be functional on networks as large as 4000
+	simultaneous users with 60,000 registered nicks.
+
+
+16. Services starts up okay, but if I try to register a nickname, it comes
+    back with "Sorry, registration failed."
+
+	Make sure you've selected the correct IRC server type in the
+	configure script; see question 9 for details.
+
+
+17. Services crashed with a segmentation fault.
+
+	See if you can reproduce this by doing a certain sequence of
+	things.  If so, please report it to me (see question 98 below).  If
+	not, you're probably out of luck; if you like, you can report it to
+	me anyway, but chances are it won't get fixed if I don't have
+	instructions on reproducing it.  If you do have such a problem, you
+	may find the crontab utility useful for dealing with it.
+
+
+18. Services' channel mode setting doesn't work.  I can't set modes with
+    OperServ, and every time ChanServ tries to set a mode, my server
+    reverses the change.
+
+	If you're running the DALnet (and maybe Undernet) daemon, make
+	sure EVERY server on your network has a U: line for Services in
+	ircd.conf, for example:
+
+	U:*::services.whatever.net
+
+	As of version 4.0, Services will report this in a WALLOPS or
+	GLOBOPS message the first time it discovers it cannot change modes.
+
+
+19. Using the OperServ JUPE command results in server messages like
+    "Server juped.server introduced by non-hub server services.my.net".
+
+	In all irc2.x-derived IRC servers (and possibly others), every
+	server on the network must have an H: line for Services in the
+	ircd.conf file, which looks something like:
+
+	H:*::services.whatever.net
+
+
+20. I can't use the ADMIN command to add Services admins--it tells me
+    "Permission denied."
+
+	Did you define yourself as the Services root?  You need to insert
+	your nickname in the ServicesRoot directive in services.conf.
+
+
+21. How can I set up multiple Services roots?
+
+	You can't.  If you really need multiple people to be able to modify
+	the Services admin list, create a role nick (e.g. "RootNick") and
+	give the password for the nick to those people.  (Note that the
+	ability to modify the Services admin list is the only difference
+	between the "root" and "admin" privilege levels.)
+
+
+22. When I add an AKILL, the users matching it don't get killed.
+
+	1) Did you include a nick in the mask?  If you did, DON'T.
+	   Autokill masks must not include nicks; Services will consider
+	   *!*@host.name to be "a username containing !", not "any nick and
+	   any username".
+
+	2) Services does not kill users when an autokill is added; it only
+	   kills them when they next connect.  This is designed behavior,
+	   intended to reduce the possibility of a mistyped autokill
+	   getting the wrong users.  (Suppose you typed "AKILL ADD *@*" and
+	   then accidentally hit Return before finishing the host mask...)
+
+
+23. When I link nicks, the URL and E-mail fields aren't copied.
+
+	This is designed behavior (though it may be changed in a future
+	version).
+
+
+24. Services reports (via /stats u or /msg OperServ STATS) a different
+    number of users online than I get from doing /lusers.
+
+	Services doesn't count its own pseudo-clients (NickServ, ChanServ,
+	etc.) in its user count, so Services will normally report a number
+	eight lower than /lusers.  If you have disabled DevNull and/or
+	IrcIIHelp in services.conf, this will be six or seven instead of
+	eight.
+
+	If you have a very large and/or busy network, there may be an
+	additional offset, either positive or negative, caused by lag
+	(1) between users signing on/off and Services recognizing them, or
+	(2) between Services killing a user and the servers receiving the
+	kill.  On a network with under 500 simultaneous clients, this
+	difference should typically not be more than one at any time, but
+	it can increase quickly as the network grows in size.  (If the
+	difference is abnormally high, see question 15 for ways to speed
+	Services up.)
+
+
+25. Services ignored the SET SUCCESSOR setting and deleted a channel when
+    the founder expired.
+
+	Normally, this is because the successor had too many channels
+	registered; in this case, you will see an entry in the log file
+	like the following:
+
+	[date] Successor (SuccessorNick) of channel #somechannel owns too
+	       many channels, deleting channel #somechannel
+
+	If you don't get a message like this or you can verify that the
+	successor wasn't running into the channel limit, please report it
+	using the bug-reporting procedure below (question 98).
+
+
+26. Services killed a user it thought was cloning when the user really
+    wasn't.  Or something else went wrong with clone killing.
+
+	Comment out KillClones in services.conf.  Better yet, remove it
+	entirely so you forget it exists.  _Don't_ complain to me, or
+	you'll get flamed, probably in public.
+
+
+27. Trying to use OperServ gives me "Access denied", but my nick is in the
+    ServicesRoot directive and is registered, and I've identified for my
+    nick.
+
+	You need to be opered (i.e. user mode +o) to access OperServ.
+
+
+97. Services sprechen kein Deutsch!, etc.  (Services doesn't speak my
+    language!)
+
+	If you would like to supply a new language module for Services,
+	take a look at lang/en_us.l, which is the language module for
+	English, as well as the comments at the top of lang/langcomp.c,
+	which describe the language module file format.  If/when you have
+	completed a module for your language, E-mail it to me
+	(achurch@dragonfire.net) for inclusion in Services.  However--
+	warning, legal stuff follows--by sending me a language module for
+	inclusion in Services, you agree to waive all copyright claims to
+	that file and the text it contains, and you agree and state that no
+	one else (such as your employer) has any claims of copyright to
+	said file and text.  (I will give credit, of course, but the
+	copyright remains mine.  If you are not sure whether your employer
+	might have rights to your translation, consult with your employer.)
+	Also, it would be very helpful if you would be willing to continue
+	updating the module as changes are made to the base English module.
+
+	If any British/Canadian English speakers want to make another
+	version of the English language file which seems more natural to
+	them, I'll take that too. (^:
+
+
+97.5. I selected a language other than English, but sometimes Services sends
+      responses in English instead.
+
+	Some language files are not complete--in other words, they don't
+	have a translation of every message Services uses, but only some of
+	them.  In this case, the missing messages will be displayed in
+	English.  You can either wait for the primary translator to provide
+	me with a translation, or do the translation yourself and send me
+	the messages translated into your language (along with the original
+	English messages so I know what they mean!).
+
+
+98. I've found a bug that's not mentioned here or in the README or
+    KnownBugs files.  What should I do?
+
+	Send a report of the bug with as many details as possible to
+	achurch@dragonfire.net.  Even if something seems obvious to you,
+	like what you think Services should be doing that it isn't, mention
+	it anyway, because what seems obvious to you may not be obvious to
+	me.  Include in any case a copy of or excerpt from the Services log
+	file, usually "services.log" in the Services data directory,
+	  **** generated with the "-debug" command-line option, ****
+	which includes a demonstration of the bug.  (This is important!)
+	If the bug occurs in response to something you do (like sending a
+	ChanServ command), also send the sequence of steps necessary to
+	reproduce the bug, preferably starting with nickname or channel
+	registration if NickServ or ChanServ is involved, and make sure the
+	corresponding part of the log file is included.
+
+
+98.5. Your Services program doesn't do XYZ like DALnet Services.  What's
+      wrong?
+
+	Nothing is wrong, except your expectations.  Services is a
+	completely different program from that used on DALnet; they are
+	similar in concept only.
+
+
+99. I've got a great new idea for Services.  Do you want it?
+
+	I'm always interested in hearing new ideas.  HOWEVER, I have very
+	specific plans for what to include and not to include in Services.
+	As a rule, I don't add anything that can be equivalently done by
+	other means, or that I don't consider useful; see below for
+	examples of things I don't plan to add.  If you have added
+	something to Services you think would be useful to include in the
+	standard distribution, feel free to send a context or unified diff
+	along with (but not instead of!) your description.  If I choose not
+	to include it, you're always free to keep and/or distribute the
+	patch yourself.
+
+	My general intent is for Services to provide as much functionality
+	as possible--while staying as lean as possible (as opposed to, say,
+	recent versions of Microsoft Word, which in my opinion provide so
+	much functionality you can't do anything).  So features which are
+	arguably beneficial will tend to be added, while features of
+	limited or no benefit or which can be equally provided by something
+	else already in use will tend to be passed over.
+
+
+99.5. Examples of features I have been asked about and why I won't add (or
+      haven't yet added) them--so don't ask me about them:
+
+	- An option to make ChanServ stay in some/all registered channels:
+	  I see absolutely no necessity for this feature, since (1)
+	  Services' channel privilege and information functions will
+	  operate whether or not ChanServ (or any users at all) are in the
+	  channel, and (2) if someone _really_ wants to keep a channel
+	  open for some reason, they can use a standard bot.  Furthermore,
+	  having ChanServ stay in channels will dramatically increase the
+	  amount of traffic Services has to handle, which will in turn
+	  reduce the rate at which Services can respond to requests.
+
+	- The various features of DALnet's ircd since version 4.4.15:
+	  Unlikely at best.  I consider most of them of no real use, and
+	  supporting them would only make Services more bulky.  The same
+	  applies to any new features Undernet's ircu-2.10 may have, and
+	  any other servers with "nifty" features added to their protocols.
+
+	- A "current time" field in NickServ and ChanServ INFO displays:
+	  Most people have clocks of some sort either on their computer
+	  screens or on their walls (or both), and all IRC servers, as well
+	  as Services, have a command to return the server's current time.
+	  Thus a current-time field in INFO displays would simply take up
+	  extra space for no reason.

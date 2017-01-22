@@ -1,0 +1,28 @@
+     For those who are upgrading to version 4.0 of Services from an earlier
+version, there is a change you may need to be aware of regarding memos.  As
+of version 4.0, Services stores memo data in the nickname database, rather
+than in a separate database as in previous versions.  By default, the name
+of the memo database in old versions of Services was "memo.db", but this
+was configurable in the config.h file.  If you chose a different name for
+your memo database, then you MUST rename it to "memo.db" in order for
+Services 4.0 to find it.  Once you have Services 4.0 running, you may
+delete this file.
+
+     Also be aware that the database files used by Services 4.0 are
+incompatible with those used by previous versions of Services; while
+Services 4.0 can read database files produced by older versions, once the
+database files are written in the new format, there is no way for older
+versions of Services to read them again.  Therefore, it would be advisable
+to back up your current database files before installing and running
+Services 4.0, so that if something goes wrong you can revert to a previous
+version.
+
+     Finally, Services 4.0 now stores all pseudo-client help messages
+(along with other Services strings that are sent to users) in language
+files to facilitate multi-language support; those help messages are no
+longer found in the Services data directory, so there is no need to run
+"make install-help", and you can delete the "nickserv", "chanserv",
+"memoserv", and "operserv" directories from the data directory.  Do note,
+however, that you will need to recompile Services if you wish to change any
+of the help texts.  (This will hopefully be fixed in the future to keep the
+files out of the executable.)

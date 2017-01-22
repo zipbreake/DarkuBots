@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# DarkuBots - Sistema de actualización
+# Copyright (C) 2005 Javier Fdez. Viña
+#     http://www.javierfv.com/
+
+echo "Actualizando DarkuBots..."
+version1=$(cat .version)
+cvs -d :pserver:anonymous@cvs2.darkbolt.org:/var/lib/cvs update
+version2=$(cat .version)
+if [ "$version1" = "$version2" ]; then
+  echo "No se encontraron actualizaciones"
+  exit 0
+fi
+echo "Instalando nueva versión"
+make
+make install
+echo "La actualización se ha completado con éxito"
+

@@ -1,0 +1,16 @@
+find_cc         : cache supplied `gcc'
+find_ccopts     : cache supplied flags: `-O9 -fomit-frame-pointer -ffast-math -fexpensive-optimizations'
+find_lflags     : cache supplied `'
+find_libs       : cache supplied `-lnsl -lresolv'
+check_int16     : cache supplied short
+check_int32     : cache supplied int
+check_strings   : cache says present
+check_sysselect : cache says present
+check_sysproto  : cache says not present
+check_aix_intNN : >>> egrep int16|int32 /usr/include/sys/systypes.h
+grep: /usr/include/sys/systypes.h: No such file or directory
+check_aix_intNN : int16/int32 types not found
+check_strerror  : cache supplied strerror()
+check_compat    : cache supplied: (none)
+check_install   : cache says use regular `install'
+check_copy_recur: cache supplied /bin/cp -dpr
